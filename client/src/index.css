@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #E65100;
+    --secondary: #FFA000;
+    --white: #FFFFFF;
+    --black: #2A2A2A;
+    --light-bg: #F9F9F9;
+    --grey: #767676;
+  }
+
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply antialiased bg-light text-dark;
+    font-family: 'Merriweather Sans', sans-serif;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Lobster Two', cursive;
+  }
+
+  h4, h5, h6 {
+    font-family: 'Rancho', cursive;
+  }
+
+  /* Prevent zoom on input focus on iOS */
+  input, select, textarea {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+}
+
+@layer components {
+  .hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/src/assets/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: calc(100vh - 4rem);
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: calc(100vh - 5rem);
+    }
+  }
+
+  .section-title {
+    @apply text-primary text-2xl md:text-4xl lg:text-5xl font-title mb-4;
+    position: relative;
+    padding-bottom: 15px;
+    line-height: 1.2;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary);
+  }
+
+  @media (max-width: 768px) {
+    .section-title::after {
+      width: 40px;
+      height: 2px;
+    }
+  }
+
+  .menu-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .menu-card {
+      @apply shadow-sm;
+    }
+    
+    .menu-card:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .primary-btn {
+    @apply bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 text-sm md:text-base;
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+
+  @media (max-width: 768px) {
+    .primary-btn {
+      @apply py-3 px-5 text-sm;
+    }
+  }
+
+  .nav-link {
+    @apply relative text-sm md:text-base font-medium;
+    position: relative;
+    touch-action: manipulation;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    .container {
+      @apply px-4;
+    }
+    
+    .grid {
+      @apply gap-4;
+    }
+    
+    .text-lg {
+      @apply text-base;
+    }
+    
+    .text-xl {
+      @apply text-lg;
+    }
+    
+    .text-2xl {
+      @apply text-xl;
+    }
+    
+    .text-3xl {
+      @apply text-2xl;
+    }
+    
+    .text-4xl {
+      @apply text-3xl;
+    }
+    
+    .text-5xl {
+      @apply text-4xl;
+    }
+  }
+
+  /* Touch-friendly buttons */
+  button, .button, a[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Improve form elements on mobile */
+  input, textarea, select {
+    @apply rounded-lg border-2 border-gray-200 focus:border-primary focus:ring-0 transition-colors;
+    min-height: 48px;
+  }
+
+  /* WhatsApp button mobile positioning */
+  @media (max-width: 768px) {
+    .whatsapp-button {
+      bottom: 6rem;
+      right: 1rem;
+      width: 56px;
+      height: 56px;
+    }
+  }
+}
